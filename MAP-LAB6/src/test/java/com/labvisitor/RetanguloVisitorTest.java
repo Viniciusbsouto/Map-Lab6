@@ -1,17 +1,40 @@
 package com.labvisitor;
 
-import com.labvisitor.model.Retangulo;
-import com.labvisitor.visitor.Visitor;
-import com.labvisitor.visitor.VisitorDesenhar;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import com.labvisitor.model.Retangulo;
+import com.labvisitor.visitor.VisitorCalcularArea;
+import com.labvisitor.visitor.VisitorCalcularPerimetro;
+import com.labvisitor.visitor.VisitorDesenhar;
+import com.labvisitor.visitor.VisitorMaximizar;
 
 public class RetanguloVisitorTest {
+
     @Test
-    public void testRetanguloAcceptsVisitor() {
-        Retangulo r = new Retangulo(2.0, 3.0);
-        Visitor v = new VisitorDesenhar();
-        assertDoesNotThrow(() -> r.accept(v));
+    void deveCalcularAreaDoRetangulo() {
+        Retangulo r = new Retangulo(4, 3);
+        assertEquals(12, r.aceitaVisita(new VisitorCalcularArea()), 1e-9);
+    }
+
+    @Test
+    void deveCalcularPerimetroDoRetangulo() {
+        Retangulo r = new Retangulo(4, 3);
+        assertEquals(14, r.aceitaVisita(new VisitorCalcularPerimetro()), 1e-9);
+    }
+
+    @Test
+    void deveDesenharRetangulo() {
+        Retangulo r = new Retangulo(4, 3);
+        assertTrue(r.aceitaVisita(new VisitorDesenhar()).contains("retângulo"));
+    }
+
+    @Test
+    void deveMaximizarRetangulo() {
+        Retangulo r = new Retangulo(4, 3);
+        r.aceitaVisita(new VisitorMaximizar());
+        assertEquals(8, r.getBase(), 1e-9);
     }
 }

@@ -5,9 +5,9 @@ import com.labvisitor.model.Retangulo;
 import com.labvisitor.model.Triangulo;
 import com.labvisitor.model.Trapezio;
 
-public interface Visitor {
-    void visit(Circulo c);
-    void visit(Retangulo r);
-    void visit(Triangulo t);
-    void visit(Trapezio t);
+public interface Visitor<T> {
+    T visitarCirculo(Circulo circulo);
+    T visitarRetangulo(Retangulo retangulo);
+    T visitarTriangulo(Triangulo triangulo);
+    T visitarTrapezio(Trapezio trapezio);
 }
