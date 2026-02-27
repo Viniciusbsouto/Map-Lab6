@@ -2,40 +2,36 @@ package com.labvisitor.visitor;
 
 import com.labvisitor.model.Circulo;
 import com.labvisitor.model.Retangulo;
-import com.labvisitor.model.Triangulo;
 import com.labvisitor.model.Trapezio;
+import com.labvisitor.model.Triangulo;
 
-public class VisitorMaximizar implements Visitor<Void> {
+public class VisitorMaximizar implements VisitorIF {
 
     @Override
-    public Void visitarCirculo(Circulo circulo) {
-        circulo.setRaio(circulo.getRaio() * 2);
-        return null;
+    public void visitarCirculo(Circulo c) {
+        c.setRaio(c.getRaio() * 2);
     }
 
     @Override
-    public Void visitarRetangulo(Retangulo retangulo) {
-        retangulo.setBase(retangulo.getBase() * 2);
-        retangulo.setAltura(retangulo.getAltura() * 2);
-        return null;
+    public void visitarRetangulo(Retangulo r) {
+        r.setBase(r.getBase() * 2);
+        r.setAltura(r.getAltura() * 2);
     }
 
     @Override
-    public Void visitarTriangulo(Triangulo triangulo) {
-        triangulo.setBase(triangulo.getBase() * 2);
-        triangulo.setLado2(triangulo.getLado2() * 2);
-        triangulo.setLado3(triangulo.getLado3() * 2);
-        triangulo.setAltura(triangulo.getAltura() * 2);
-        return null;
+    public void visitarTriangulo(Triangulo t) {
+        t.setBase(t.getBase() * 2);
+        t.setLado2(t.getLado2() * 2);
+        t.setLado3(t.getLado3() * 2);
+        t.setAltura(t.getAltura() * 2);
     }
 
     @Override
-    public Void visitarTrapezio(Trapezio trapezio) {
-        trapezio.setBaseMaior(trapezio.getBaseMaior() * 2);
-        trapezio.setBaseMenor(trapezio.getBaseMenor() * 2);
-        trapezio.setLadoEsquerdo(trapezio.getLadoEsquerdo() * 2);
-        trapezio.setLadoDireito(trapezio.getLadoDireito() * 2);
-        trapezio.setAltura(trapezio.getAltura() * 2);
-        return null;
+    public void visitarTrapezio(Trapezio tz) {
+        tz.setBaseMaior(tz.getBaseMaior() * 2);
+        tz.setBaseMenor(tz.getBaseMenor() * 2);
+        tz.setLadoEsquerdo(tz.getLadoEsquerdo() * 2);
+        tz.setLadoDireito(tz.getLadoDireito() * 2);
+        tz.setAltura(tz.getAltura() * 2);
     }
 }

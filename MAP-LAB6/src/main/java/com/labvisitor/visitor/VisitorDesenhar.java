@@ -2,34 +2,33 @@ package com.labvisitor.visitor;
 
 import com.labvisitor.model.Circulo;
 import com.labvisitor.model.Retangulo;
-import com.labvisitor.model.Triangulo;
 import com.labvisitor.model.Trapezio;
+import com.labvisitor.model.Triangulo;
 
-public class VisitorDesenhar implements Visitor<String> {
+public class VisitorDesenhar implements VisitorIF {
+    private String desenho;
 
-    @Override
-    public String visitarCirculo(Circulo circulo) {
-        return "Desenhando um círculo de raio " + circulo.getRaio();
+    public String getDesenho() {
+        return desenho;
     }
 
     @Override
-    public String visitarRetangulo(Retangulo retangulo) {
-        return "Desenhando um retângulo de base " + retangulo.getBase()
-                + " e altura " + retangulo.getAltura();
+    public void visitarCirculo(Circulo c) {
+        desenho = "Desenhando um círculo de raio " + c.getRaio();
     }
 
     @Override
-    public String visitarTriangulo(Triangulo triangulo) {
-        return "Desenhando um triângulo de lados "
-                + triangulo.getBase() + ", "
-                + triangulo.getLado2() + ", "
-                + triangulo.getLado3();
+    public void visitarRetangulo(Retangulo r) {
+        desenho = "Desenhando um retângulo de base " + r.getBase() + " e altura " + r.getAltura();
     }
 
     @Override
-    public String visitarTrapezio(Trapezio trapezio) {
-        return "Desenhando um trapézio de bases "
-                + trapezio.getBaseMaior() + " e "
-                + trapezio.getBaseMenor();
+    public void visitarTriangulo(Triangulo t) {
+        desenho = "Desenhando um triângulo de lados " + t.getBase() + ", " + t.getLado2() + ", " + t.getLado3();
+    }
+
+    @Override
+    public void visitarTrapezio(Trapezio tz) {
+        desenho = "Desenhando um trapézio de bases " + tz.getBaseMaior() + " e " + tz.getBaseMenor();
     }
 }

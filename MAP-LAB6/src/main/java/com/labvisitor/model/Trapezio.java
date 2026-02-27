@@ -1,6 +1,6 @@
 package com.labvisitor.model;
 
-import com.labvisitor.visitor.Visitor;
+import com.labvisitor.visitor.VisitorIF;
 
 public class Trapezio implements Figura {
     private double baseMaior;
@@ -77,7 +77,7 @@ public class Trapezio implements Figura {
     }
 
     @Override
-    public <T> T aceitaVisita(Visitor<T> visitor) {
-        return visitor.visitarTrapezio(this);
+    public void aceitaVisita(VisitorIF visitor) {
+        visitor.visitarTrapezio(this);
     }
 }

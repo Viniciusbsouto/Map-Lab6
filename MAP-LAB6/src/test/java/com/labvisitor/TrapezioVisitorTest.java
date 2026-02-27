@@ -2,12 +2,11 @@ package com.labvisitor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 import com.labvisitor.model.Trapezio;
-import com.labvisitor.visitor.VisitorCalcularArea;
-import com.labvisitor.visitor.VisitorCalcularPerimetro;
+import com.labvisitor.visitor.VisitorCalculaArea;
+import com.labvisitor.visitor.VisitorCalculaPerimetro;
 import com.labvisitor.visitor.VisitorDesenhar;
 import com.labvisitor.visitor.VisitorMaximizar;
 
@@ -15,26 +14,41 @@ public class TrapezioVisitorTest {
 
     @Test
     void deveCalcularAreaDoTrapezio() {
-        Trapezio t = new Trapezio(10, 6, 5, 5, 4);
-        assertEquals(32, t.aceitaVisita(new VisitorCalcularArea()), 1e-9);
+        Trapezio tz = new Trapezio(10, 6, 5, 5, 4);
+        VisitorCalculaArea visitor = new VisitorCalculaArea();
+
+        tz.aceitaVisita(visitor);
+
+        assertEquals(32, visitor.getResultado(), 1e-9);
     }
 
     @Test
     void deveCalcularPerimetroDoTrapezio() {
-        Trapezio t = new Trapezio(10, 6, 5, 5, 4);
-        assertEquals(26, t.aceitaVisita(new VisitorCalcularPerimetro()), 1e-9);
+        Trapezio tz = new Trapezio(10, 6, 5, 5, 4);
+        VisitorCalculaPerimetro visitor = new VisitorCalculaPerimetro();
+
+        tz.aceitaVisita(visitor);
+
+        assertEquals(26, visitor.getResultado(), 1e-9);
     }
 
     @Test
     void deveDesenharTrapezio() {
-        Trapezio t = new Trapezio(10, 6, 5, 5, 4);
-        assertTrue(t.aceitaVisita(new VisitorDesenhar()).contains("trapézio"));
+        Trapezio tz = new Trapezio(10, 6, 5, 5, 4);
+        VisitorDesenhar visitor = new VisitorDesenhar();
+
+        tz.aceitaVisita(visitor);
+
+        assertTrue(visitor.getDesenho().contains("trapézio"));
     }
 
     @Test
     void deveMaximizarTrapezio() {
-        Trapezio t = new Trapezio(10, 6, 5, 5, 4);
-        t.aceitaVisita(new VisitorMaximizar());
-        assertEquals(20, t.getBaseMaior(), 1e-9);
+        Trapezio tz = new Trapezio(10, 6, 5, 5, 4);
+        VisitorMaximizar visitor = new VisitorMaximizar();
+
+        tz.aceitaVisita(visitor);
+
+        assertEquals(20, tz.getBaseMaior(), 1e-9);
     }
 }

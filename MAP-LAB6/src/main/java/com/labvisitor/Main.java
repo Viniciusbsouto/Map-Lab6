@@ -5,8 +5,8 @@ import com.labvisitor.model.Figura;
 import com.labvisitor.model.Retangulo;
 import com.labvisitor.model.Trapezio;
 import com.labvisitor.model.Triangulo;
-import com.labvisitor.visitor.VisitorCalcularArea;
-import com.labvisitor.visitor.VisitorCalcularPerimetro;
+import com.labvisitor.visitor.VisitorCalculaArea;
+import com.labvisitor.visitor.VisitorCalculaPerimetro;
 import com.labvisitor.visitor.VisitorDesenhar;
 import com.labvisitor.visitor.VisitorMaximizar;
 
@@ -20,22 +20,34 @@ public class Main {
         };
 
         VisitorDesenhar visitorDesenhar = new VisitorDesenhar();
-        VisitorCalcularArea visitorArea = new VisitorCalcularArea();
-        VisitorCalcularPerimetro visitorPerimetro = new VisitorCalcularPerimetro();
+        VisitorCalculaArea visitorArea = new VisitorCalculaArea();
+        VisitorCalculaPerimetro visitorPerimetro = new VisitorCalculaPerimetro();
         VisitorMaximizar visitorMaximizar = new VisitorMaximizar();
 
         for (Figura figura : figuras) {
-            System.out.println("==================================");
-            System.out.println(figura.aceitaVisita(visitorDesenhar));
-            System.out.println("Área: " + figura.aceitaVisita(visitorArea));
-            System.out.println("Perímetro: " + figura.aceitaVisita(visitorPerimetro));
+            System.out.println("================================");
+
+            figura.aceitaVisita(visitorDesenhar);
+            System.out.println(visitorDesenhar.getDesenho());
+
+            figura.aceitaVisita(visitorArea);
+            System.out.println("Área: " + visitorArea.getResultado());
+
+            figura.aceitaVisita(visitorPerimetro);
+            System.out.println("Perímetro: " + visitorPerimetro.getResultado());
 
             figura.aceitaVisita(visitorMaximizar);
 
             System.out.println("Após maximizar:");
-            System.out.println(figura.aceitaVisita(visitorDesenhar));
-            System.out.println("Área: " + figura.aceitaVisita(visitorArea));
-            System.out.println("Perímetro: " + figura.aceitaVisita(visitorPerimetro));
+
+            figura.aceitaVisita(visitorDesenhar);
+            System.out.println(visitorDesenhar.getDesenho());
+
+            figura.aceitaVisita(visitorArea);
+            System.out.println("Área: " + visitorArea.getResultado());
+
+            figura.aceitaVisita(visitorPerimetro);
+            System.out.println("Perímetro: " + visitorPerimetro.getResultado());
         }
     }
 }

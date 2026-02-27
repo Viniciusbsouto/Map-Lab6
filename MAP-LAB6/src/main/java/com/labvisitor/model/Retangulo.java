@@ -1,8 +1,8 @@
 package com.labvisitor.model;
 
-import com.labvisitor.visitor.Visitor;
+import com.labvisitor.visitor.VisitorIF;
 
-public class Retangulo implements Figura {
+public class Retangulo implements Figura  {
     private double base;
     private double altura;
 
@@ -37,7 +37,7 @@ public class Retangulo implements Figura {
     }
 
     @Override
-    public <T> T aceitaVisita(Visitor<T> visitor) {
-        return visitor.visitarRetangulo(this);
+    public void aceitaVisita(VisitorIF visitor) {
+        visitor.visitarRetangulo(this);
     }
 }

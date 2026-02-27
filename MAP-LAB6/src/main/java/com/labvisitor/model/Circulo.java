@@ -1,6 +1,6 @@
 package com.labvisitor.model;
 
-import com.labvisitor.visitor.Visitor;
+import com.labvisitor.visitor.VisitorIF;
 
 public class Circulo implements Figura {
     private double raio;
@@ -24,7 +24,7 @@ public class Circulo implements Figura {
     }
 
     @Override
-    public <T> T aceitaVisita(Visitor<T> visitor) {
-        return visitor.visitarCirculo(this);
+    public void aceitaVisita(VisitorIF visitor) {
+        visitor.visitarCirculo(this);
     }
 }

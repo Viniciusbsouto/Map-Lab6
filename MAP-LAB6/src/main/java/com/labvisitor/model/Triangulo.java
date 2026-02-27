@@ -1,6 +1,6 @@
 package com.labvisitor.model;
 
-import com.labvisitor.visitor.Visitor;
+import com.labvisitor.visitor.VisitorIF;
 
 public class Triangulo implements Figura {
     private double base;
@@ -68,7 +68,7 @@ public class Triangulo implements Figura {
     }
 
     @Override
-    public <T> T aceitaVisita(Visitor<T> visitor) {
-        return visitor.visitarTriangulo(this);
+    public void aceitaVisita(VisitorIF visitor) {
+        visitor.visitarTriangulo(this);
     }
 }
